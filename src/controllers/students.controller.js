@@ -16,7 +16,7 @@ const read = (req, res) => {
     if (err) {
       return res.status(400).json(err.message);
     }
-    res.status(200).json(data);
+    return res.status(200).json(data);
   });
 };
 

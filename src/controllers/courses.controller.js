@@ -55,9 +55,9 @@ const remove = (req, res) => {
 const list = (req, res) => {
   Course.find((err, data) => {
     if (err) {
-      console.log(err);
+      return console.log(err);
     }
-    res.status(200).json(data);
+    return res.status(200).json(data);
   });
 };
 
