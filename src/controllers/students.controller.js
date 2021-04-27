@@ -1,5 +1,6 @@
 import Student from "../models/student.model";
 import _ from "lodash";
+
 const create = (req, res) => {
   const student = Student(req.body);
   student.save((err, data) => {
@@ -16,7 +17,7 @@ const read = (req, res) => {
     if (err) {
       return res.status(400).json(err.message);
     }
-    return res.status(200).json(data);
+    res.status(200).json(data);
   });
 };
 
@@ -54,9 +55,9 @@ const remove = (req, res) => {
 const list = (req, res) => {
   Student.find((err, data) => {
     if (err) {
-      console.log(err);
+      return res.status(400).json(err.message);
     }
-    res.status(200).json(data);
+    return res.status(200).json(data);
   });
 };
 
