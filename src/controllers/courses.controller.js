@@ -2,7 +2,7 @@ import _ from "lodash";
 import Course from "../models/course.model";
 
 const create = (req, res) => {
-  const course = Course(req.body);
+  const course = Course((req.body._id = undefined));
   course.save((err, data) => {
     if (err) {
       return res.status(400).json(err.message);
@@ -12,7 +12,7 @@ const create = (req, res) => {
 };
 
 const read = (req, res) => {
-  const id = req.params.id;
+  const id = req.params._id;
   Course.findById(id).exec((err, data) => {
     if (err) {
       return res.status(400).json(err.message);
@@ -22,7 +22,7 @@ const read = (req, res) => {
 };
 
 const update = (req, res) => {
-  const id = req.params.id;
+  const id = req.params._id;
   Course.findById(id).exec((err, data) => {
     if (err || !data) {
       return res.status(400).json("Course not found!");
